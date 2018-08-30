@@ -22,3 +22,4 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 cv2.putText(img,"Here's looking at you, kid",(10,100), font, 1, (255,255,255), 2, cv2.LINE_AA)
 cv2.imshow('casablanca with text',img)
 cv2.waitKey(0)
+cv2.imwrite('imgwtext.png',img)
