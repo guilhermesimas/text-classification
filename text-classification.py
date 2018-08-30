@@ -1,16 +1,19 @@
 import cv2
+from matplotlib import pyplot as plt
 
 print("OpenCV Python Tutorial using version " + cv2.__version__)
 
-img = cv2.imread("img.pgm",cv2.IMREAD_GRAYSCALE)
-
+img = cv2.imread('img.pgm',0)
 cv2.imshow('casablanca',img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+k = cv2.waitKey(0)
+if k == 27:         # wait for ESC key to exit
+    cv2.destroyAllWindows()
+    exit()
+elif k == ord('s'): # wait for 's' key to save and exit
+    cv2.imwrite('img.png',img)
+    cv2.destroyAllWindows()
+    exit()
 
-cv2.namedWindow("casablanca",cv2.WINDOW_NORMAL)
-cv2.imshow('casablanca',img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-cv2.imwrite("img.png",img)
+plt.imshow(img, cmap = "gray", interpolation = "bicubic")
+plt.xticks([]), plt.yticks([])
+plt.show()
