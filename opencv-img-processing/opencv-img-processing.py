@@ -33,3 +33,14 @@ img_color[:,:,1] = 0
 img_color[:,:,2] = 0
 cv2.imshow("Blue",img_color)
 cv2.waitKey(0)
+
+img_color = cv2.imread("color.tiff")
+img_ruler = cv2.imread("ruler.tiff")
+
+cv2.imshow("Peppers",img_color)
+cv2.imshow("Ruler",img_ruler)
+cv2.waitKey(0)
+
+img_merged = cv2.addWeighted(img_color,0.5,img_ruler,0.5,0)
+cv2.imshow("Peppers with Ruler",img_merged)
+cv2.waitKey(0)
