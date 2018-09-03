@@ -44,3 +44,29 @@ cv2.waitKey(0)
 img_merged = cv2.addWeighted(img_color,0.5,img_ruler,0.5,0)
 cv2.imshow("Peppers with Ruler",img_merged)
 cv2.waitKey(0)
+
+img_saturn = cv2.imread("saturn.tiff")
+cv2.imshow("Saturn",img_saturn)
+cv2.waitKey(0)
+
+img_saturn_gray = cv2.cvtColor(img_saturn, cv2.COLOR_BGR2GRAY)
+ret, mask = cv2.threshold(img_saturn_gray, 20,255,cv2.THRESH_BINARY_INV)
+mask_inv = cv2.bitwise_not(mask)
+cv2.imshow("Saturn mask",mask_inv)
+cv2.waitKey(0)
+
+row,col,_ = img_saturn.shape
+color_roi = img_color[0:row,0:col]
+
+img_masked = cv2.bitwise_and(color_roi, color_roi, mask = mask_inv)
+cv2.imshow("Saturn Peppers",img_masked)
+cv2.waitKey(0)
+
+img_added = cv2.add(img_saturn,img_masked)
+cv2.imshow("Saturn Peppers Added",img_added)
+cv2.waitKey(0)
+
+img_added_weighted = cv2.addWeighted(img_saturn,0.5,img_masked,0.5,0)
+cv2.imshow("Saturn Peppers Added Weighted",img_added_weighted)
+cv2.waitKey(0)
+
